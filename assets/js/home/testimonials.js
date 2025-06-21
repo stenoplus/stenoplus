@@ -85,4 +85,4 @@ function createSlideGroups() {
   
   // Initial setup
   updateCardsPerView();
-  showSlide(0);  
+  showSlide(0);

@@ -1,4 +1,4 @@
-    <!-- Sidebar -->
+<!-- Sidebar -->
     <aside id="sidebar" class="w-64 bg-[#002147] text-white h-screen p-4 fixed sidebar sidebar-hidden md:translate-x-0 z-50">
         <button id="closeSidebar" class="absolute top-4 right-4 text-white md:hidden">
             <i data-lucide="x"></i>
