@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile - StenoPlus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-lg mx-auto bg-white p-6 mt-10 rounded-xl shadow-md border-t-4 border-[#D2171E]">
+        <h2 class="text-xl font-semibold mb-4 text-[#002147]">Update Profile</h2>
+
+        <!-- Profile Picture Display -->
+        <div class="flex flex-col items-center mb-4">
+            <img id="profilePic" src="default-profile.png" alt="Profile Picture" class="w-24 h-24 rounded-full border-2 border-gray-300">
+            <p class="text-sm text-gray-500 mt-2">Click below to update your profile picture</p>
+        </div>
+
+        <form id="profileForm" enctype="multipart/form-data" class="space-y-4">
+            <input type="text" name="name" placeholder="Full Name" class="w-full p-2 border rounded" required>
+            <input type="email" name="email" placeholder="Email" class="w-full p-2 border rounded" required>
+            <input type="text" name="mobile" placeholder="Mobile Number" class="w-full p-2 border rounded" required>
+            <input type="date" name="dob" class="w-full p-2 border rounded" required>
+            <select name="gender" class="w-full p-2 border rounded" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" name="city" placeholder="City" class="w-full p-2 border rounded" required>
+            <select name="course" class="w-full p-2 border rounded" required>
+                <option value="">Select Preferred Course</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Cyber Security">Cyber Security</option>
+            </select>
+            
+            <!-- Profile Picture Upload -->
+            <input type="file" name="photo" accept="image/*" class="w-full p-2 border rounded" onchange="previewImage(event)">
+
+            <button type="submit" class="w-full bg-[#D2171E] text-white p-2 rounded hover:bg-[#B2151A]">Update Profile</button>
+        </form>
+        <p id="responseMessage" class="mt-4 text-center text-[#002147]"></p>
+    </div>
+
+    <script>
+        // Preview selected image
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                document.getElementById('profilePic').src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // Fetch and display user details including profile photo
+        function loadProfile() {
+            fetch('get_profile.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.querySelector('input[name="name"]').value = data.name;
+                    document.querySelector('input[name="email"]').value = data.email;
+                    document.querySelector('input[name="mobile"]').value = data.mobile;
+                    document.querySelector('input[name="dob"]').value = data.dob;
+                    document.querySelector('select[name="gender"]').value = data.gender;
+                    document.querySelector('input[name="city"]').value = data.city;
+                    document.querySelector('select[name="course"]').value = data.course;
+                    document.getElementById('profilePic').src = data.photo || 'default-profile.png';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let formData = new FormData(this);
+
+            fetch('update_profile.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('responseMessage').textContent = data.message;
+                loadProfile(); // Reload profile details after update
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        window.onload = loadProfile;
+    </script>
+</body>
+</html>

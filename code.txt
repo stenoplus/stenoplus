@@ -1,0 +1,11 @@
+<audio id="audioPlayer<?= $row['test_id'] ?>" src="uploads/dictation/<?= $row['dictation_file'] ?>"></audio>
+
+
+
+     <td class="border border-gray-300 px-2 py-2 text-center">
+                                <div class="flex items-center justify-center h-full">
+                                    <textarea name="transcript" id="transcript<?= $row['test_id'] ?>" cols="25" rows="1"
+                                        readonly class="border border-gray-300 px-2 py-2 text-left resize-y focus:outline-none dark:bg-gray-800 dark:text-white"
+                                        placeholder="<?= htmlspecialchars($row['transcript_file']) ?>" required></textarea>
+                                </div>
+                            </td>

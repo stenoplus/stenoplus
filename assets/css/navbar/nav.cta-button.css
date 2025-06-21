@@ -1,0 +1,98 @@
+body {
+  font-family: "Poppins", sans-serif;
+  padding-top: 90px;
+  /* Adjust based on the height of both navbars */
+}
+
+/* Topnav Links separator */
+.vertical-line {
+  width: 1px;
+  height: 16px; /* Adjust as needed */
+  background-color: white;
+  display: inline-block;
+  margin: 0 8px;
+}
+/* End Topnav Links separator */
+
+/* CTA's Button CSS Start */ /* Sink and grow effect on hover */
+@keyframes sink-grow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(210, 23, 30, 0.4);
+  }
+  50% {
+    transform: scale(0.95); /* Slight shrink */
+    box-shadow: 0 0 10px rgba(210, 23, 30, 0.5);
+  }
+  100% {
+    transform: scale(1.05); /* Then grow */
+    box-shadow: 0 0 20px rgba(210, 23, 30, 0.6);
+  }
+}
+
+/* By default, no animation */
+.pulse-grow {
+  display: inline-flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* On hover, apply sink-grow effect */
+.pulse-grow:hover,
+.pulse-grow:focus {
+  animation: sink-grow 1.5s infinite alternate ease-in-out;
+}
+/* CTA's Button CSS End */
+
+/* Top Navbar and Navbar CSS */
+.blink {
+  animation: blinker 1.5s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Blinking Animation */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+/* Remove underline and add pointer cursor */
+a {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

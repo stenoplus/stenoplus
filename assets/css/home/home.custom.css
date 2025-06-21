@@ -1,0 +1,77 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+/* Hero Section */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Testimonials Section */
+.quote-icon {
+  color: #d2171e;
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  opacity: 0.3;
+}
+.testimonial-card {
+  transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+.active-dot {
+  background-color: #d2171e !important;
+}
+.slide-group {
+  min-width: 100%;
+}
+/* End of Testimonials Section */
+
+/* Newsletter Section */
+.newsletter-container {
+  background: linear-gradient(90deg, #002147 0%, #002147 50%, #d2171e 50%, #d2171e 100%);
+}
+.newsletter-input {
+  border: 2px solid #d2171e;
+  transition: all 0.3s ease;
+  padding-left: 3rem; /* Space for the icon */
+}
+.newsletter-input:focus {
+  outline: none;
+  border-color: #002147;
+  box-shadow: 0 0 0 3px rgba(210, 23, 30, 0.2);
+}
+.newsletter-btn {
+  background-color: #d2171e;
+  transition: all 0.3s ease-in-out;
+}
+.newsletter-btn:hover {
+  background-color: #002147;
+}
+.hidden {
+  display: none;
+}
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+/* End Newsletter Section */
